@@ -1,6 +1,6 @@
 <template>
-  <div class="nav-wrapper">
-    <div class="content">
+  <div class="layout-wrapper" :class="classPrefix && `${classPrefix}-wrapper`">
+    <div class="content" :class="classPrefix && `${classPrefix}-content`   ">
       <slot />
     </div>
     <Nav />
@@ -11,19 +11,19 @@
 import Vue from "vue";
 
 export default Vue.extend({
+  props: ['classPrefix'],
   name: "Layout",
 });
 </script>
 
 <style lang="scss" scoped>
-.nav-wrapper {
-  border: 1px solid green;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
-.content {
-  overflow: auto;
-  flex-grow: 1;
-}
+  .layout-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  .content {
+    overflow: auto;
+    flex-grow: 1;
+  }
 </style>
