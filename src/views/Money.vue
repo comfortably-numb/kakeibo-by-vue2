@@ -17,6 +17,7 @@ import Notes from "@/components/Money/Notes.vue";
 import Types from "@/components/Money/Types.vue";
 import {Component, Watch} from "vue-property-decorator";
 
+localStorage.setItem("version", "0.0.1");
 type Record = {
   tags: string[],
   notes: string,
