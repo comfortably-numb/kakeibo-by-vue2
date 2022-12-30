@@ -19,14 +19,14 @@ import {Component, Watch} from "vue-property-decorator";
 import {model} from "@/model";
 
 localStorage.setItem("version", "0.0.1");
-const recordList: RecordItem[] = model.fetch();
+const recordList = model.fetch();
 @Component({
   components: {Types, Notes, NumberPad, Tags}
 })
 export default class Money extends Vue {
   tags = ["衣", "食", "住", "行"];
   recordList: RecordItem[] = recordList;
-  record: RecordItem[] = {
+  record: RecordItem = {
     tags: [], notes: "", type: "-", amount: 0
   };
 
@@ -39,14 +39,14 @@ export default class Money extends Vue {
   }
 
   saveRecord(): void {
-    let newRecord: RecordItem = JSON.parse(JSON.stringify(this.record));
+    let newRecord = model.clone(this.record);
     newRecord.createdDate = new Date();
     this.recordList.push(newRecord);
   }
 
   @Watch("recordList")
   onRecordListChange(): void {
-    window.localStorage.setItem("recordList", JSON.stringify(this.recordList));
+    model.save(this.recordList);
   }
 }
 </script>
