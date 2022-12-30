@@ -25,5 +25,10 @@ module.exports = {
         jest: true
       }
     }
-  ]
+  ],
+  "globals": { "RecordItem": true,
+  "RecordItem.tags":true,
+  "notes":true,
+  "type":true},
+
 }
