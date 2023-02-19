@@ -1,7 +1,7 @@
 const localStorageKeyName = "tagList";
 const tagListModel = {
-    data: [] as string[],
-    fetch(): string[] {
+    data: [] as Tag[],
+    fetch(): Tag[] {
         this.data = JSON.parse(localStorage.getItem(localStorageKeyName) || "[]");
         return this.data;
     },
@@ -10,14 +10,14 @@ const tagListModel = {
     },
     create(name: string): string {
 
-        if (this.data.indexOf(name) >= 0) {
+        const names = this.data.map(tag => tag.name);
+        if (names.indexOf(name) >= 0) {
             return "duplicated";
         }
-        this.data.push(name);
+        this.data.push({id: name, name: name});
         this.save();
         return "success";
     }
-
 };
 
 export {tagListModel};
